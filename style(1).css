@@ -1,0 +1,42 @@
+.funny {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.funny:active {
+    transform: translateY(4px);
+  }
+
+body {
+    background-color: rgb(2, 24, 0);
+}
+
+h1 {
+    color: white;
+    font-family: dosis;
+    font-size: 40px;
+}
+
+@font-face {
+    font-family: dosis;
+    src: url(Dosis-Bold.ttf);
+    
+}
+
+.shop {
+    background-color: rgb(0, 109, 0);
+    
+    border: 15px solid rgb(0, 70, 0);
+    padding: 50px;
+    margin: 20px;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Clicker Game by Amir</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<h1 style="text-align: center;">Hard Radio Station<br> Current Song:<div id="current-song"></div></h1>
+
+
+        <button onclick="clicker.click();" style="width: 415px;" class="funny">
+            <img width="400px" src="4x.gif" alt="TILLMAN BOIIII"> <br>
+        </button>
+        <br>
+        <audio class="funnyaudio" controls autoplay>
+            <source src="http://144.217.29.205/;stream.nsv|HardRadio|Hardrock" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+
+          <script>
+            async function fetchCurrentSong() {
+                const proxyUrl = 'https://api.allorigins.win/get?url=';
+                const targetUrl = encodeURIComponent('http://144.217.29.205/currentsong?sid=1');
+                const requestUrl = proxyUrl + targetUrl;
+    
+                try {
+                    const response = await fetch(requestUrl);
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.statusText} (status: ${response.status})`);
+                    }
+                    const data = await response.json();
+                    const songText = data.contents;
+                    document.getElementById('current-song').innerText = songText;
+                } catch (error) {
+                    console.error('There has been a problem with your fetch operation:', error);
+                    document.getElementById('current-song').innerText = `Failed to load song: ${error.message}`;
+                }
+            }
+    
+            fetchCurrentSong();
+        
+        // Set up the interval to refresh every 1 minutes (60000 milliseconds)
+
+        setInterval(fetchCurrentSong, 6000);
+        </script>
+</html>

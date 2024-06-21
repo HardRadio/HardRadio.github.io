@@ -18,30 +18,23 @@
         </audio>
 
 
-          <script>
-            async function fetchCurrentSong() {
-                const proxyUrl = 'https://api.allorigins.win/get?url=';
-                const targetUrl = encodeURIComponent('http://144.217.29.205/currentsong?sid=1');
-                const requestUrl = proxyUrl + targetUrl;
-    
-                try {
-                    const response = await fetch(requestUrl);
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok: ${response.statusText} (status: ${response.status})`);
-                    }
-                    const data = await response.json();
-                    const songText = data.contents;
-                    document.getElementById('current-song').innerText = songText;
-                } catch (error) {
-                    console.error('There has been a problem with your fetch operation:', error);
-                    document.getElementById('current-song').innerText = `Failed to load song: ${error.message}`;
+    <script>
+        // Function to fetch and display the current song
+        async function fetchCurrentSong() {
+            try {
+                const response = await fetch('http://144.217.29.205/currentsong?sid=1');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
+                const songText = await response.text();
+                document.getElementById('current-song').innerText = songText;
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+                document.getElementById('current-song').innerText = 'Failed to load song';
             }
-    
-            fetchCurrentSong();
-        
-        // Set up the interval to refresh every 1 minutes (60000 milliseconds)
+        }
 
-        setInterval(fetchCurrentSong, 60);
-        </script>
+        // Call the function to fetch the current song
+        fetchCurrentSong();
+    </script>
 </html>

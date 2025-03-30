@@ -25,6 +25,17 @@
             const proxyUrl = 'https://api.allorigins.win/get?url=';
             const targetUrl = encodeURIComponent('http://144.217.29.205/currentsong?sid=1');
             const requestUrl = `${proxyUrl}${targetUrl}&_=${new Date().getTime()}`; // Add timestamp to prevent caching
+            const response = await fetch(requestUrl);
+            const data = await response.json();
+            const songText = data.contents;
+            // Construct the YouTube search link
+            clickthing = ytlink + songText;
+
+            // Replace spaces with '+' in the link
+            clickthing = clickthing.replace(/ /g, "+");
+
+            // Set the href attribute of the <a> tag
+            document.getElementById('ytlinkforsong').setAttribute("href", clickthing);
 
             try {
                 const response = await fetch(requestUrl);
@@ -39,15 +50,6 @@
                 document.getElementById('current-song').innerText = `Failed to load song: ${error.message}`;
             }
         }
-
-        // Construct the YouTube search link
-        clickthing = ytlink + songText;
-
-        // Replace spaces with '+' in the link
-        clickthing = clickthing.replace(/ /g, "+");
-
-        // Set the href attribute of the <a> tag
-        document.getElementById('ytlinkforsong').setAttribute("href", clickthing);
 
         // Fetch the song initially
         fetchCurrentSong();

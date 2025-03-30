@@ -16,6 +16,10 @@
     background: none;
 }
 
+#ytlinkforsong {
+    text-decoration: none;
+}
+
 .cooly {
 font-family: dosis;
 color: white;

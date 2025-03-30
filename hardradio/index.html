@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="style.css">
     </head>
     <body>
-		<h1 style="text-align: center;">Hard Radio Station<br> Current Song:<div id="current-song">broken</div></h1>
+		<a id="ytlinkforsong" href="" target="_blank"><h1 style="text-align: center;">Hard Radio Station<br> Current Song:<div id="current-song">broken</div></h1></a>
 
 
         <button onclick="clicker.click();" style="width: 415px;" class="funny">
@@ -37,6 +37,15 @@
                 document.getElementById('current-song').innerText = `Failed to load song: ${error.message}`;
             }
         }
+
+        // Construct the YouTube search link
+        clickthing = ytlink + songText;
+
+        // Replace spaces with '+' in the link
+        clickthing = clickthing.replace(/ /g, "+");
+
+        // Set the href attribute of the <a> tag
+        document.getElementById('ytlinkforsong').setAttribute("href", clickthing);
 
         // Fetch the song initially
         fetchCurrentSong();

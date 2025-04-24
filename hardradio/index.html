@@ -13,12 +13,16 @@
         </button>
         <br>
         <audio class="funnyaudio" controls autoplay>
-            <source src="https://hardgoob.pinehub.co/hardradio/hardradio3.ram" type="audio/rm"> 
+            <source src="http://144.217.29.205/;stream.nsv|HardRadio|Hardrock" type="audio/mpeg"> 
             Your browser does not support the audio element.
         </audio>
 	<!-- http://144.217.29.205/;stream.nsv|HardRadio|Hardrock old link -->
 
     <script>
+
+	if (location.protocol !== 'https:') {
+   	 location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+	}
         const ytlink = 'https://www.youtube.com/results?search_query='
         var clickthing = ''
         async function fetchCurrentSong() {
